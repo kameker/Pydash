@@ -1,7 +1,7 @@
 # импорт библиотек
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from game_menu import Ui_Form
+from game_menu_ui import Ui_Form
 
 
 # Создание главного стартового окна
@@ -37,8 +37,8 @@ def except_hook(cls, exception, traceback):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Main()
-    #ex.setObjectName("MainWindow")
-    #ex.setStyleSheet("#MainWindow{border-image:url(image.jpg)}")
+    # ex.setObjectName("MainWindow")
+    # ex.setStyleSheet("#MainWindow{border-image:url(image.jpg)}")
     ex.show()
     sys.excepthook = except_hook
     sys.exit(app.exec_())
