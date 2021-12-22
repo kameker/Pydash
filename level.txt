@@ -1,6 +1,6 @@
-cube 200 650
-spike 500 650
-cube 300 650
-orb 400 650
-cube 400 650
-orb 300 500
+cube 200 650 red
+spike 500 650 white
+cube 300 650 blue
+orb 400 650 yellow
+cube 400 650 red
+orb 300 500 black
