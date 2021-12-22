@@ -52,11 +52,13 @@ class Generator:
                     self.list_of_coords.append((x, y))
 
 
+background = pygame.image.load('textures/background.jpg')
 size = (1000, 700)
 screen = pygame.display.set_mode(size)
+screen.blit(background, (0, 0))
 board = Generator(20, 14)
 running = True
-# board.render(screen)
+board.render(screen)
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -66,3 +68,4 @@ while running:
             board.open_file()
             board.generate_level()
         pygame.display.flip()
+
