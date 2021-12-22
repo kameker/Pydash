@@ -34,19 +34,20 @@ class Generator:
             coords = ((coords[0] - self.left) // self.cell_size, (coords[1] - self.top) // self.cell_size)
             x = coords[0] * self.cell_size + self.left
             y = coords[1] * self.cell_size + self.top
+            color = data[3]
             if (x, y) not in self.list_of_coords:
                 if data[0] == "cube":
-                    pygame.draw.rect(screen, pygame.Color(255, 0, 0),
+                    pygame.draw.rect(screen, pygame.Color(color),
                                      (x + 1, y + 1,
                                       self.cell_size - 2, self.cell_size - 2))
                     self.list_of_coords.append((x, y))
                 elif data[0] == "spike":
-                    pygame.draw.polygon(screen, pygame.Color(0, 255, 0),
+                    pygame.draw.polygon(screen, pygame.Color(color),
                                         ((x, y + self.cell_size), (x + self.cell_size, y + self.cell_size),
                                          (x + self.cell_size // 2, y)))
                     self.list_of_coords.append((x, y))
                 elif data[0] == "orb":
-                    pygame.draw.circle(screen, pygame.Color(255, 255, 0), (x + self.cell_size // 2, y + self.cell_size // 2),
+                    pygame.draw.circle(screen, pygame.Color(color), (x + self.cell_size // 2, y + self.cell_size // 2),
                                        self.cell_size // 3)
                     self.list_of_coords.append((x, y))
 
