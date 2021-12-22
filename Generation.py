@@ -58,7 +58,7 @@ screen = pygame.display.set_mode(size)
 screen.blit(background, (0, 0))
 board = Generator(20, 14)
 running = True
-# board.render(screen)
+board.render(screen)
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
