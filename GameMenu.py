@@ -1,9 +1,43 @@
 # импорт библиотек
 import pygame
+import sys
+import os
+
+play_button = 'textures/play_button.png'
 
 pygame.init()
 size = 1000, 700
 screen = pygame.display.set_mode(size)
+
+pygame.display.set_caption('PyDash')
+
+clock = pygame.time.Clock()
+
+music = pygame.mixer.Sound('textures/music_menu.mp3')
+music.play(-1)
+
+all_sprites = pygame.sprite.Group()
+
+menu_img = pygame.image.load('background.png')
+
+
+class Play_Button(pygame.sprite.Sprite):
+    def __init__(self, *group, name):
+        super().__init__(*group)
+        self.name = name
+
+        self.image = pygame.image.load(self.name)
+        self.image = self.image.convert_alpha()
+
+        self.rect = self.image.get_rect()
+        self.rect = self.rect.move(350, 250)
+
+
+    def update(self, *args):
+        if args and args[0].type == pygame.MOUSEBUTTONDOWN and \
+                self.rect.collidepoint(args[0].pos):
+            print("Переход в игру")
+
 
 class Button:
     def __init__(self, w, h):
@@ -34,47 +68,44 @@ class Button:
 
 
 
+running = True
 
-class Main:
-    # инициальзация
-    def __init__(self):
-
-        menu_img = pygame.image.load('background.png')
-
-        running = True
-
-        screen.blit(menu_img, (0, 0))
-        pygame.display.update()
-        button = Button(180, 70)
-        button.print_text('PyDash', 350, 100, font_size=62, font_color=(0, 0, 0))
-        button.print_text('PyDash', 350, 100, font_size=60, font_color=(73, 210, 11))
-        button.draw(400, 300, 'Играть')
-
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-            pygame.display.update()
+screen.blit(menu_img, (0, 0))
+pygame.display.update()
+button = Button(180, 70)
+button.print_text('PyDash', 350, 60, font_size=62, font_color=(0, 0, 0))
+button.print_text('PyDash', 350, 60, font_size=60, font_color=(73, 210, 11))
+# button.draw(400, 300, 'Играть')
+Play_Button(all_sprites, name=play_button)
 
 
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            all_sprites.update(event)
+    clock.tick(30)
+    all_sprites.draw(screen)
+    all_sprites.update(event)
+    pygame.display.flip()
 
+# открытие окна с заданиями
+def open_level(self):
+    pass
+    # открытие qt окна с уровнями
 
-    # открытие окна с заданиями
-    def open_level(self):
-        pass
-        # открытие qt окна с уровнями
+def open_registration(self):
+    pass
+    # открытие окна qt с регистрацией и статистикой
 
-    def open_registration(self):
-        pass
-        # открытие окна qt с регистрацией и статистикой
-
-    def open_creation_new_level(self):
-        pass
-        # открытие pygame окна с созданием уровней
+def open_creation_new_level(self):
+    pass
+    # открытие pygame окна с созданием уровней
 
 
 
 
 # запуск
-if __name__ == '__main__':
-    main = Main()
+#if __name__ == '__main__':
+    #main = Main()
