@@ -1,3 +1,6 @@
+import os
+import sys
+
 import pygame
 
 
@@ -34,23 +37,35 @@ class Generator:
             coords = ((coords[0] - self.left) // self.cell_size, (coords[1] - self.top) // self.cell_size)
             x = coords[0] * self.cell_size + self.left
             y = coords[1] * self.cell_size + self.top
-            color = data[3]
             if (x, y) not in self.list_of_coords:
                 if data[0] == "cube":
-                    pygame.draw.rect(screen, pygame.Color(color),
-                                     (x + 1, y + 1,
-                                      self.cell_size - 2, self.cell_size - 2))
+                    picture = pygame.image.load("textures\cube.png")
+                    picture = pygame.transform.scale(picture, (50, 50))
+                    screen.blit(picture, (x, y))
                     self.list_of_coords.append((x, y))
                 elif data[0] == "spike":
-                    pygame.draw.polygon(screen, pygame.Color(color),
-                                        ((x, y + self.cell_size), (x + self.cell_size, y + self.cell_size),
-                                         (x + self.cell_size // 2, y)))
+
                     self.list_of_coords.append((x, y))
                 elif data[0] == "orb":
-                    pygame.draw.circle(screen, pygame.Color(color), (x + self.cell_size // 2, y + self.cell_size // 2),
-                                       self.cell_size // 3)
+                    picture = pygame.image.load("textures\orb.png")
+                    picture = pygame.transform.scale(picture, (50, 50))
+                    screen.blit(picture, (x, y))
                     self.list_of_coords.append((x, y))
 
+    def load_image(self, name, colorkey=None):
+        fullname = os.path.join('textures', name)
+        if not os.path.isfile(fullname):
+            print(f"Файл с изображением '{fullname}' не найден")
+            sys.exit()
+        image = pygame.image.load(fullname)
+        if colorkey is not None:
+            image = image.convert()
+            if colorkey == -1:
+                colorkey = image.get_at((0, 0))
+            image.set_colorkey(colorkey)
+        else:
+            image = image.convert_alpha()
+        return image
 
 background = pygame.image.load('textures/background.jpg')
 size = (1000, 700)
@@ -58,7 +73,7 @@ screen = pygame.display.set_mode(size)
 screen.blit(background, (0, 0))
 board = Generator(20, 14)
 running = True
-board.render(screen)
+# board.render(screen)
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
