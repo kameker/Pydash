@@ -35,6 +35,7 @@ class Play_Button(pygame.sprite.Sprite):
     def update(self, *args):
         if args and args[0].type == pygame.MOUSEBUTTONDOWN and \
                 self.rect.collidepoint(args[0].pos):
+            pygame.quit()
             start_genration()
 
 
