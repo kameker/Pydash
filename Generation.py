@@ -31,9 +31,8 @@ class Generator:
             self.list_of_object = [i for i in s.split("\n")]
             if self.list_of_object[-1] == "":
                 self.list_of_object.pop(-1)
-        print(self.list_of_object)
 
-    def generate_level(self):
+    def generate_level(self, level):
         for i in self.list_of_object:
             data = i.split()
             coords = (int(data[1]), int(data[2]))
@@ -41,7 +40,7 @@ class Generator:
             x = coords[0] * self.cell_size + self.left
             y = coords[1] * self.cell_size + self.top
             self.first_stage_generation(data[0], x, y)
-        self.Obstacle_sprites.draw(screen)
+        self.Obstacle_sprites.draw(level)
 
     def first_stage_generation(self, data, x, y):
         picture = self.load_image(data + ".png")
@@ -71,19 +70,21 @@ class Generator:
         return image
 
 
-background = pygame.image.load('textures/background.jpg')
-size = (1300, 700)
-screen = pygame.display.set_mode(size)
-screen.blit(background, (0, 0))
-board = Generator(20, 14)
-running = True
-# board.render(screen)
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            coords = event.pos
-            board.open_file()
-            board.generate_level()
-        pygame.display.flip()
+def start_genration():
+    background = pygame.image.load('textures/background.jpg')
+    size = (1300, 700)
+    level = pygame.display.set_mode(size)
+    level.blit(background, (0, 0))
+    board = Generator(30, 14)
+    running = True
+    board.render(level)
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                coords = event.pos
+                board.open_file()
+                board.generate_level(level)
+            pygame.display.flip()
+start_genration()
