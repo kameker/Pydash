@@ -38,30 +38,20 @@ class Generator:
             coords = ((coords[0] - self.left) // self.cell_size, (coords[1] - self.top) // self.cell_size)
             x = coords[0] * self.cell_size + self.left
             y = coords[1] * self.cell_size + self.top
-            if (x, y) not in self.list_of_coords:
-                if data[0] == "cube":
-                    picture = self.load_image("cube.png")
-                    picture = pygame.transform.scale(picture, (50, 50))
-                    cube = pygame.sprite.Sprite()
-                    cube.image = picture
-                    cube.rect = cube.image.get_rect()
-                    self.Obstacle_sprites.add(cube)
-                    cube.rect.x = x
-                    cube.rect.y = y
-                    # screen.blit(picture, (x, y))
-                elif data[0] == "spike":
-
-                    self.list_of_coords.append((x, y))
-                elif data[0] == "orb":
-                    picture = self.load_image("orb.png")
-                    picture = pygame.transform.scale(picture, (40, 40))
-                    cube = pygame.sprite.Sprite()
-                    cube.image = picture
-                    cube.rect = cube.image.get_rect()
-                    self.Obstacle_sprites.add(cube)
-                    cube.rect.x = x + 5
-                    cube.rect.y = y + 5
+            self.first_stage_generation(data[0], x, y)
         self.Obstacle_sprites.draw(screen)
+
+    def first_stage_generation(self, data, x, y):
+        picture = self.load_image(data + ".png")
+        cube = pygame.sprite.Sprite()
+        cube.image = picture
+        cube.rect = cube.image.get_rect()
+        self.Obstacle_sprites.add(cube)
+        if data == "orb":
+            x += 5
+            y += 5
+        cube.rect.x = x
+        cube.rect.y = y
 
     def load_image(self, name, colorkey=None):
         fullname = os.path.join('textures', name)
@@ -80,7 +70,7 @@ class Generator:
 
 
 background = pygame.image.load('textures/background.jpg')
-size = (1000, 700)
+size = (1300, 700)
 screen = pygame.display.set_mode(size)
 screen.blit(background, (0, 0))
 board = Generator(20, 14)

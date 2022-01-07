@@ -2,3 +2,5 @@ cube 200 650
 cube 300 650
 cube 450 651
 orb 500 653
+spike 550 650
+loverOrb 600 650
