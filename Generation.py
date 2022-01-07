@@ -15,6 +15,7 @@ class Generator:
         self.name_file = "level.txt"
         self.list_of_object = []
         self.list_of_coords = []
+        self.Obstacle_sprites = pygame.sprite.Group()
 
     def render(self, screen):
         for i in range(self.width):
@@ -39,18 +40,28 @@ class Generator:
             y = coords[1] * self.cell_size + self.top
             if (x, y) not in self.list_of_coords:
                 if data[0] == "cube":
-                    picture = pygame.image.load("textures\cube.png")
+                    picture = self.load_image("cube.png")
                     picture = pygame.transform.scale(picture, (50, 50))
-                    screen.blit(picture, (x, y))
-                    self.list_of_coords.append((x, y))
+                    cube = pygame.sprite.Sprite()
+                    cube.image = picture
+                    cube.rect = cube.image.get_rect()
+                    self.Obstacle_sprites.add(cube)
+                    cube.rect.x = x
+                    cube.rect.y = y
+                    # screen.blit(picture, (x, y))
                 elif data[0] == "spike":
 
                     self.list_of_coords.append((x, y))
                 elif data[0] == "orb":
-                    picture = pygame.image.load("textures\orb.png")
-                    picture = pygame.transform.scale(picture, (50, 50))
-                    screen.blit(picture, (x, y))
-                    self.list_of_coords.append((x, y))
+                    picture = self.load_image("orb.png")
+                    picture = pygame.transform.scale(picture, (40, 40))
+                    cube = pygame.sprite.Sprite()
+                    cube.image = picture
+                    cube.rect = cube.image.get_rect()
+                    self.Obstacle_sprites.add(cube)
+                    cube.rect.x = x + 5
+                    cube.rect.y = y + 5
+        self.Obstacle_sprites.draw(screen)
 
     def load_image(self, name, colorkey=None):
         fullname = os.path.join('textures', name)
@@ -66,6 +77,7 @@ class Generator:
         else:
             image = image.convert_alpha()
         return image
+
 
 background = pygame.image.load('textures/background.jpg')
 size = (1000, 700)
@@ -83,4 +95,3 @@ while running:
             board.open_file()
             board.generate_level()
         pygame.display.flip()
-
