@@ -29,6 +29,8 @@ class Generator:
             s = f.read()
         if s:
             self.list_of_object = [i for i in s.split("\n")]
+            if self.list_of_object[-1] == "":
+                self.list_of_object.pop(-1)
         print(self.list_of_object)
 
     def generate_level(self):
