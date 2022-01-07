@@ -87,6 +87,3 @@ def start_genration():
                 board.open_file()
                 board.generate_level(level)
             pygame.display.flip()
-
-
-
