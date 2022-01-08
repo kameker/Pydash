@@ -15,6 +15,7 @@ class Generator:
         self.name_file = "level.txt"
         self.list_of_object = []
         self.list_of_coords = []
+        self.Obstacle_sprites = pygame.sprite.Group()
 
     def render(self, screen):
         for i in range(self.width):
@@ -28,29 +29,30 @@ class Generator:
             s = f.read()
         if s:
             self.list_of_object = [i for i in s.split("\n")]
-        print(self.list_of_object)
+            if self.list_of_object[-1] == "":
+                self.list_of_object.pop(-1)
 
-    def generate_level(self):
+    def generate_level(self, level):
         for i in self.list_of_object:
             data = i.split()
             coords = (int(data[1]), int(data[2]))
             coords = ((coords[0] - self.left) // self.cell_size, (coords[1] - self.top) // self.cell_size)
             x = coords[0] * self.cell_size + self.left
             y = coords[1] * self.cell_size + self.top
-            if (x, y) not in self.list_of_coords:
-                if data[0] == "cube":
-                    picture = pygame.image.load("textures\cube.png")
-                    picture = pygame.transform.scale(picture, (50, 50))
-                    screen.blit(picture, (x, y))
-                    self.list_of_coords.append((x, y))
-                elif data[0] == "spike":
+            self.first_stage_generation(data[0], x, y)
+        self.Obstacle_sprites.draw(level)
 
-                    self.list_of_coords.append((x, y))
-                elif data[0] == "orb":
-                    picture = pygame.image.load("textures\orb.png")
-                    picture = pygame.transform.scale(picture, (50, 50))
-                    screen.blit(picture, (x, y))
-                    self.list_of_coords.append((x, y))
+    def first_stage_generation(self, data, x, y):
+        picture = self.load_image(data + ".png")
+        cube = pygame.sprite.Sprite()
+        cube.image = picture
+        cube.rect = cube.image.get_rect()
+        self.Obstacle_sprites.add(cube)
+        if data == "orb":
+            x += 5
+            y += 5
+        cube.rect.x = x
+        cube.rect.y = y
 
     def load_image(self, name, colorkey=None):
         fullname = os.path.join('textures', name)
@@ -67,20 +69,21 @@ class Generator:
             image = image.convert_alpha()
         return image
 
-background = pygame.image.load('textures/background.jpg')
-size = (1000, 700)
-screen = pygame.display.set_mode(size)
-screen.blit(background, (0, 0))
-board = Generator(20, 14)
-running = True
-# board.render(screen)
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            coords = event.pos
-            board.open_file()
-            board.generate_level()
-        pygame.display.flip()
 
+def start_genration():
+    background = pygame.image.load('textures/background.jpg')
+    size = (1300, 700)
+    level = pygame.display.set_mode(size)
+    level.blit(background, (0, 0))
+    board = Generator(30, 14)
+    running = True
+    board.render(level)
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                coords = event.pos
+                board.open_file()
+                board.generate_level(level)
+            pygame.display.flip()

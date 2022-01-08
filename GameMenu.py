@@ -2,6 +2,7 @@
 import pygame
 import sys
 import os
+from Generation import start_genration
 
 play_button = 'textures/play_button.png'
 
@@ -13,12 +14,10 @@ pygame.display.set_caption('PyDash')
 
 clock = pygame.time.Clock()
 
-music = pygame.mixer.Sound('textures/music_menu.mp3')
-music.play(-1)
 
 all_sprites = pygame.sprite.Group()
 
-menu_img = pygame.image.load('background.png')
+menu_img = pygame.image.load('textures/background.jpg')
 
 
 class Play_Button(pygame.sprite.Sprite):
@@ -36,7 +35,8 @@ class Play_Button(pygame.sprite.Sprite):
     def update(self, *args):
         if args and args[0].type == pygame.MOUSEBUTTONDOWN and \
                 self.rect.collidepoint(args[0].pos):
-            print("Переход в игру")
+            pygame.quit()
+            start_genration()
 
 
 class Button:
