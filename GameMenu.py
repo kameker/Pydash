@@ -67,7 +67,6 @@ class Button:
         self.print_text(message, x + 10, y + 10)
 
 
-
 running = True
 
 screen.blit(menu_img, (0, 0))
@@ -89,21 +88,6 @@ while running:
     all_sprites.draw(screen)
     all_sprites.update(event)
     pygame.display.flip()
-
-# открытие окна с заданиями
-def open_level(self):
-    pass
-    # открытие qt окна с уровнями
-
-def open_registration(self):
-    pass
-    # открытие окна qt с регистрацией и статистикой
-
-def open_creation_new_level(self):
-    pass
-    # открытие pygame окна с созданием уровней
-
-
 
 
 # запуск
