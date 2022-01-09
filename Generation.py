@@ -5,14 +5,14 @@ import pygame
 
 
 class Generator:
-    def __init__(self, width, height):
+    def __init__(self, width, height, level_name):
         self.width = width
         self.height = height
         self.board = [[0] * width for _ in range(height)]
         self.left = 0
         self.top = 0
         self.cell_size = 50
-        self.name_file = "level.txt"
+        self.level_name = level_name
         self.list_of_object = []
         self.list_of_coords = []
         self.Obstacle_sprites = pygame.sprite.Group()
@@ -25,7 +25,7 @@ class Generator:
                                   self.cell_size, self.cell_size), 1)
 
     def open_file(self):
-        with open(self.name_file, encoding="utf8") as f:
+        with open("levels/" + self.level_name, encoding="utf8") as f:
             s = f.read()
         if s:
             self.list_of_object = [i for i in s.split("\n")]
