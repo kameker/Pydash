@@ -7,6 +7,7 @@ Obstacle_sprites = pygame.sprite.Group()
 cube_sprites = pygame.sprite.Group()
 orb_sprites = pygame.sprite.Group()
 lower_orb_sprites = pygame.sprite.Group()
+all_Obstacle_sprites = pygame.sprite.Group()
 
 class Generator:
     def __init__(self, width, height, level_name):
@@ -50,6 +51,7 @@ class Generator:
         cube.image = picture
         cube.rect = cube.image.get_rect()
         cube.mask = pygame.mask.from_surface(picture)
+        all_Obstacle_sprites.add(cube)
         if data == "orb":
             orb_sprites.add(cube)
             x += 5
