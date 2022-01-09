@@ -37,11 +37,11 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = 0
         self.rect.y = height - 50
         self.jump = 9
+        self.jump_flag = False
 
     def update(self, *args):
-        global jump
-        self.rect.x += 10
-        if jump:
+        self.rect.x += 9
+        if self.jump_flag:
             if self.jump >= -9:
                 if self.jump < 0:
                     self.rect.y += (self.jump ** 2) / 2
@@ -49,7 +49,7 @@ class Player(pygame.sprite.Sprite):
                     self.rect.y -= (self.jump ** 2) / 2
                 self.jump -= 1
             else:
-                jump = False
+                self.jump_flag = False
                 self.jump = 9
 
 
