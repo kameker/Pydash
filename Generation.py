@@ -68,22 +68,3 @@ class Generator:
         else:
             image = image.convert_alpha()
         return image
-
-
-def start_genration():
-    background = pygame.image.load('textures/background.jpg')
-    size = (1300, 700)
-    level = pygame.display.set_mode(size)
-    level.blit(background, (0, 0))
-    board = Generator(30, 14)
-    running = True
-    board.render(level)
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                coords = event.pos
-                board.open_file()
-                board.generate_level(level)
-            pygame.display.flip()
