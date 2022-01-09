@@ -49,6 +49,7 @@ class Generator:
         cube = pygame.sprite.Sprite()
         cube.image = picture
         cube.rect = cube.image.get_rect()
+        cube.mask = pygame.mask.from_surface(picture)
         if data == "orb":
             orb_sprites.add(cube)
             x += 5
