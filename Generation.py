@@ -3,7 +3,7 @@ import sys
 
 import pygame
 
-
+Obstacle_sprites = pygame.sprite.Group()
 class Generator:
     def __init__(self, width, height, level_name):
         self.width = width
@@ -15,7 +15,6 @@ class Generator:
         self.level_name = level_name
         self.list_of_object = []
         self.list_of_coords = []
-        self.Obstacle_sprites = pygame.sprite.Group()
 
     def render(self, screen):
         for i in range(self.width):
@@ -40,14 +39,13 @@ class Generator:
             x = coords[0] * self.cell_size + self.left
             y = coords[1] * self.cell_size + self.top
             self.first_stage_generation(data[0], x, y)
-        self.Obstacle_sprites.draw(level)
 
     def first_stage_generation(self, data, x, y):
         picture = self.load_image(data + ".png")
         cube = pygame.sprite.Sprite()
         cube.image = picture
         cube.rect = cube.image.get_rect()
-        self.Obstacle_sprites.add(cube)
+        Obstacle_sprites.add(cube)
         if data == "orb":
             x += 5
             y += 5

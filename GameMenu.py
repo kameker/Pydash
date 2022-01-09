@@ -3,6 +3,8 @@ import pygame
 import sys
 import os
 from Generation import start_genration
+import Generation
+
 
 play_button = 'textures/play_button.png'
 
