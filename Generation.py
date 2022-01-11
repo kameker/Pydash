@@ -1,13 +1,14 @@
 import os
 import sys
-
 import pygame
+from Obstacle import SpikeObst, LowerOrbObst, OrbObst, CubeObst
 
 Obstacle_sprites = pygame.sprite.Group()
 cube_sprites = pygame.sprite.Group()
 orb_sprites = pygame.sprite.Group()
 lower_orb_sprites = pygame.sprite.Group()
 all_Obstacle_sprites = pygame.sprite.Group()
+
 
 class Generator:
     def __init__(self, width, height, level_name):
@@ -43,25 +44,27 @@ class Generator:
             coords = ((coords[0] - self.left) // self.cell_size, (coords[1] - self.top) // self.cell_size)
             x = coords[0] * self.cell_size + self.left
             y = coords[1] * self.cell_size + self.top
-            self.first_stage_generation(data[0], x, y)
+            data = data[0]
+            if data == "orb":
+                cube = OrbObst()
+                orb_sprites.add(cube)
+                x += 5
+                y += 5
+            elif data == "cube":
+                cube = CubeObst()
+                cube_sprites.add(cube)
+                self.second_stage_of_generation(cube, x, y)
+            elif data == "spike":
+                cube = SpikeObst()
+                Obstacle_sprites.add(cube)
+                self.second_stage_of_generation(cube, x, y)
+            elif data == "lowerOrb":
+                cube = LowerOrbObst()
+                lower_orb_sprites.add(cube)
+                self.second_stage_of_generation(cube, x, y)
 
-    def first_stage_generation(self, data, x, y):
-        picture = self.load_image(data + ".png")
-        cube = pygame.sprite.Sprite()
-        cube.image = picture
-        cube.rect = cube.image.get_rect()
-        cube.mask = pygame.mask.from_surface(picture)
+    def second_stage_of_generation(self, cube, x, y):
         all_Obstacle_sprites.add(cube)
-        if data == "orb":
-            orb_sprites.add(cube)
-            x += 5
-            y += 5
-        elif data == "cube":
-            cube_sprites.add(cube)
-        elif data == "spike":
-            Obstacle_sprites.add(cube)
-        elif data == "lowerOrb":
-            lower_orb_sprites.add(cube)
         cube.rect.x = x
         cube.rect.y = y
 

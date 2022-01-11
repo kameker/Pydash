@@ -1,7 +1,6 @@
 import os
 import sys
 import pygame
-from Generation import all_Obstacle_sprites, Obstacle_sprites, cube_sprites, orb_sprites, lower_orb_sprites
 from Square import Player
 
 
@@ -25,17 +24,17 @@ class CubeObst(pygame.sprite.Sprite):
     image = load_image('cube.png')
 
     def __init__(self):
-        super().__init__(all_Obstacle_sprites, cube_sprites)
+        super().__init__()
         self.image = CubeObst.image
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
-        if self.rect.y + 50 > Player.rect.y + 50 > self.rect.y \
-                and self.rect.x + 50 > Player.rect.x + 50 > self.rect.x:
+        if self.rect.y + 50 > Player.image.rect.y + 50 > self.rect.y \
+                and self.rect.x + 50 > Player.image.rect.x + 50 > self.rect.x:
             print('cube!')  # проверка
-        elif self.rect.x + 50 > Player.rect.x + 50 > self.rect.x \
-                and Player.rect.y + 50 == self.rect.y:
+        elif self.rect.x + 50 > Player.image.rect.x + 50 > self.rect.x \
+                and Player.image.rect.y + 50 == self.rect.y:
             print('продолжаем ехать')
 
 
@@ -43,13 +42,13 @@ class SpikeObst(pygame.sprite.Sprite):
     image = load_image('spike.png')
 
     def __init__(self):
-        super().__init__(all_Obstacle_sprites, Obstacle_sprites)
+        super().__init__()
         self.image = SpikeObst.image
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
-        if pygame.sprite.collide_mask(self, Player):
+        if pygame.sprite.collide_mask(self, Player.image):
             print('spike!')  # проверка
 
 
@@ -57,25 +56,25 @@ class OrbObst(pygame.sprite.Sprite):
     image = load_image('orb.png')
 
     def __init__(self):
-        super().__init__(all_Obstacle_sprites, orb_sprites)
+        super().__init__()
         self.image = SpikeObst.image
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
 
     def update(self, *args):
-        if pygame.sprite.collide_mask(self, Player) and pygame.event.type == pygame.MOUSEBUTTONDOWN:
+        if pygame.sprite.collide_mask(self, Player.image) and pygame.event.type == pygame.MOUSEBUTTONDOWN:
             print('прыжок!')  # проверка
 
 
 class LowerOrbObst(pygame.sprite.Sprite):
-    image = load_image('lowerOrb.png')
+    image = load_image('loverOrb.png')
 
     def __init__(self):
-        super().__init__(all_Obstacle_sprites, Obstacle_sprites)
+        super().__init__()
         self.image = SpikeObst.image
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
-        if pygame.sprite.collide_mask(self, Player):
+        if pygame.sprite.collide_mask(self, Player.image):
             print('нижний прыжок!')  # проверка
