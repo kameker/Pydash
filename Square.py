@@ -2,11 +2,11 @@ import os
 import sys
 import pygame
 
+
 pygame.init()
 size = width, height = 1300, 700
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
-all_sprites = pygame.sprite.Group()
 player_sprites = pygame.sprite.Group()
 jump = False
 
@@ -28,21 +28,22 @@ def load_image(name, colorkey=None):
 
 
 class Player(pygame.sprite.Sprite):
-    image = load_image('player.png')
+    image = load_image('cube.png')
 
     def __init__(self, *group):
-        super().__init__(all_sprites, player_sprites)
+        super().__init__(player_sprites)
         self.image = Player.image
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.rect.y = height - 50
-        self.jump = 9
+        self.jump = 10
         self.jump_flag = False
+        self.mask = pygame.mask.from_surface(self.image)
 
-    def update(self, *args):
-        self.rect.x += 9
+    def update(self):
+        self.rect.x += 10
         if self.jump_flag:
-            if self.jump >= -9:
+            if self.jump >= -10:
                 if self.jump < 0:
                     self.rect.y += (self.jump ** 2) / 2
                 else:
@@ -50,7 +51,7 @@ class Player(pygame.sprite.Sprite):
                 self.jump -= 1
             else:
                 self.jump_flag = False
-                self.jump = 9
+                self.jump = 10
 
 
 class Camera:
@@ -68,5 +69,3 @@ class Camera:
     def update(self, target):
         self.dx = -(target.rect.x + target.rect.w // 2 - width // 2)
         self.dy = -(target.rect.y + target.rect.h // 2 - height // 2)
-
-
