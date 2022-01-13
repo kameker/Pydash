@@ -1,1 +1,1 @@
-import pygame
+from Generation import Generator
