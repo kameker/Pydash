@@ -2,12 +2,7 @@ import os
 import sys
 import pygame
 from Obstacle import SpikeObst, LowerOrbObst, OrbObst, CubeObst
-
-Obstacle_sprites = pygame.sprite.Group()
-cube_sprites = pygame.sprite.Group()
-orb_sprites = pygame.sprite.Group()
-lower_orb_sprites = pygame.sprite.Group()
-all_Obstacle_sprites = pygame.sprite.Group()
+from Obstacle import all_Obstacle_sprites
 
 
 class Generator:
@@ -47,20 +42,17 @@ class Generator:
             data = data[0]
             if data == "orb":
                 cube = OrbObst()
-                orb_sprites.add(cube)
                 x += 5
                 y += 5
+                self.second_stage_of_generation(cube, x, y)
             elif data == "cube":
                 cube = CubeObst()
-                cube_sprites.add(cube)
                 self.second_stage_of_generation(cube, x, y)
             elif data == "spike":
                 cube = SpikeObst()
-                Obstacle_sprites.add(cube)
                 self.second_stage_of_generation(cube, x, y)
             elif data == "lowerOrb":
                 cube = LowerOrbObst()
-                lower_orb_sprites.add(cube)
                 self.second_stage_of_generation(cube, x, y)
 
     def second_stage_of_generation(self, cube, x, y):

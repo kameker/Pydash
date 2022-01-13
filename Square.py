@@ -28,7 +28,7 @@ def load_image(name, colorkey=None):
 
 
 class Player(pygame.sprite.Sprite):
-    image = load_image('player.png')
+    image = load_image('cube.png')
 
     def __init__(self, *group):
         super().__init__(player_sprites)
@@ -69,3 +69,6 @@ class Camera:
     def update(self, target):
         self.dx = -(target.rect.x + target.rect.w // 2 - width // 2)
         self.dy = -(target.rect.y + target.rect.h // 2 - height // 2)
+
+
+player = Player(player_sprites)
