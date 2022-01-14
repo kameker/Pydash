@@ -46,13 +46,13 @@ class Generator:
                 y += 5
                 self.second_stage_of_generation(cube, x, y)
             elif data == "cube":
-                cube = CubeObst()
+                cube = CubeObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
             elif data == "spike":
-                cube = SpikeObst()
+                cube = SpikeObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
             elif data == "lowerOrb":
-                cube = LowerOrbObst()
+                cube = LowerOrbObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
 
     def second_stage_of_generation(self, cube, x, y):

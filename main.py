@@ -1,7 +1,6 @@
 import pygame
 from Generation import Generator
-from Square import Camera
-from Square import Player
+from Square import Player, player
 from Square import player_sprites
 from Square import clock
 from Generation import all_Obstacle_sprites
@@ -11,8 +10,6 @@ size = (1300, 700)
 level = pygame.display.set_mode(size)
 board = Generator(30, 14, "level.txt")
 running = True
-camera = Camera()
-player = Player(player_sprites)
 board.open_file()
 board.generate_level(level)
 while running:

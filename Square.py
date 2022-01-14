@@ -36,14 +36,13 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.rect.y = height - 50
-        self.jump = 10
+        self.jump = 11
         self.jump_flag = False
         self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
-        self.rect.x += 10
         if self.jump_flag:
-            if self.jump >= -10:
+            if self.jump >= -11:
                 if self.jump < 0:
                     self.rect.y += (self.jump ** 2) / 2
                 else:
@@ -51,28 +50,7 @@ class Player(pygame.sprite.Sprite):
                 self.jump -= 1
             else:
                 self.jump_flag = False
-                self.jump = 10
-
-    def death(self):
-        self.rect.x = 0
-        self.rect.y = 650
-
-
-class Camera:
-    # зададим начальный сдвиг камеры
-    def __init__(self):
-        self.dx = 0
-        self.dy = 0
-
-    # сдвинуть объект obj на смещение камеры
-    def apply(self, obj):
-        obj.rect.x += self.dx
-        obj.rect.y += self.dy
-
-    # позиционировать камеру на объекте target
-    def update(self, target):
-        self.dx = -(target.rect.x + target.rect.w // 2 - width // 2)
-        self.dy = -(target.rect.y + target.rect.h // 2 - height // 2)
+                self.jump = 11
 
 
 player = Player(player_sprites)
