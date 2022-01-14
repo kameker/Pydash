@@ -85,6 +85,7 @@ class OrbObst(pygame.sprite.Sprite):
         if pygame.sprite.collide_mask(self, player):
             if args and args[0].type == pygame.MOUSEBUTTONDOWN:
                 player.jump_flag = True
+                player.jump = 30
 
 
 class LowerOrbObst(pygame.sprite.Sprite):
