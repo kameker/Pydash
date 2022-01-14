@@ -7,6 +7,7 @@ all_Obstacle_sprites = pygame.sprite.Group()
 
 
 def restart():
+    pygame.time.delay(1000)
     for i in all_Obstacle_sprites:
         i.rect.x = i.x
         i.rect.y = i.y
@@ -41,12 +42,14 @@ class CubeObst(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.x -= 5
-        if self.rect.y + 50 > player.rect.y + 50 > self.rect.y \
-                and self.rect.x + 50 > player.rect.x + 50 > self.rect.x:
+        if self.rect.y + 50 >= player.rect.y + 50 > self.rect.y \
+                and player.rect.x + 50 == self.rect.x:
             restart()
-        elif self.rect.x + 50 > player.rect.x + 50 > self.rect.x \
-                and player.rect.y + 50 == self.rect.y:
-            player.y_now = self.rect.y
+        if pygame.sprite.collide_mask(self, player):
+            player.y_now = self.rect.y - 50
+            player.rect.y = player.y_now
+        else:
+            player.y_now = 650
 
 
 class SpikeObst(pygame.sprite.Sprite):
@@ -77,7 +80,7 @@ class OrbObst(pygame.sprite.Sprite):
         self.x = x
         self.y = y
 
-    def update(self, *args, **kwargs):
+    def update(self, *args):
         self.rect.x -= 5
         if pygame.sprite.collide_mask(self, player):
             if args and args[0].type == pygame.MOUSEBUTTONDOWN:
