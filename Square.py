@@ -40,6 +40,7 @@ class Player(pygame.sprite.Sprite):
         self.jump_flag = False
         self.mask = pygame.mask.from_surface(self.image)
         self.y_now = 650
+        self.orb_jump = False
 
     def update(self):
         if self.jump_flag:
