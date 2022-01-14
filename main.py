@@ -2,6 +2,7 @@ import pygame
 from Generation import Generator
 from Square import Player, player
 from Square import player_sprites
+from Obstacle import orb_flag
 from Square import clock
 from Generation import all_Obstacle_sprites
 
@@ -22,6 +23,7 @@ while running:
                 running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             player.jump_flag = True
+            orb_flag = True
     player_sprites.draw(level)
     player_sprites.update()
     all_Obstacle_sprites.draw(level)
