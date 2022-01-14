@@ -1,7 +1,7 @@
 import os
 import sys
 import pygame
-from Obstacle import SpikeObst, LowerOrbObst, OrbObst, CubeObst
+from Obstacle import SpikeObst, LowerOrbObst, CubeObst, FinishObst
 from Obstacle import all_Obstacle_sprites
 
 
@@ -32,7 +32,7 @@ class Generator:
             if self.list_of_object[-1] == "":
                 self.list_of_object.pop(-1)
 
-    def generate_level(self, level):
+    def generate_level(self):
         for i in self.list_of_object:
             data = i.split()
             coords = (int(data[1]), int(data[2]))
@@ -40,19 +40,17 @@ class Generator:
             x = coords[0] * self.cell_size + self.left
             y = coords[1] * self.cell_size + self.top
             data = data[0]
-            if data == "orb":
-                cube = OrbObst(x, y)
-                x += 5
-                y += 5
-                self.second_stage_of_generation(cube, x, y)
-            elif data == "cube":
+            if data == "cube":
                 cube = CubeObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
             elif data == "spike":
                 cube = SpikeObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
-            elif data == "lowerOrb":
+            elif data == "loverOrb":
                 cube = LowerOrbObst(x, y)
+                self.second_stage_of_generation(cube, x, y)
+            elif data == "finish":
+                cube = FinishObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
 
     def second_stage_of_generation(self, cube, x, y):

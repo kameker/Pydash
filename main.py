@@ -8,10 +8,10 @@ from Generation import all_Obstacle_sprites
 background = pygame.image.load('textures/background.jpg')
 size = (1300, 700)
 level = pygame.display.set_mode(size)
-board = Generator(30, 14, "level.txt")
+board = Generator(30, 14, "test.txt")
 running = True
 board.open_file()
-board.generate_level(level)
+board.generate_level()
 while running:
     level.blit(background, (0, 0))
     for event in pygame.event.get():
