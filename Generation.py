@@ -41,7 +41,7 @@ class Generator:
             y = coords[1] * self.cell_size + self.top
             data = data[0]
             if data == "orb":
-                cube = OrbObst()
+                cube = OrbObst(x, y)
                 x += 5
                 y += 5
                 self.second_stage_of_generation(cube, x, y)

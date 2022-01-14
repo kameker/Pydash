@@ -27,4 +27,4 @@ while running:
     all_Obstacle_sprites.draw(level)
     all_Obstacle_sprites.update()
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(100)
