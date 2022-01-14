@@ -89,7 +89,6 @@ class Button:
             pygame.draw.rect(screen, self.move_button, (x, y, self.w, self.h))
 
             if click[0] == 1:
-                # нажата кнопка играть, переход в игру.
                 print(levels[0])
 
         else:

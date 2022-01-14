@@ -41,20 +41,19 @@ class Generator:
             y = coords[1] * self.cell_size + self.top
             data = data[0]
             if data == "orb":
-                cube = OrbObst()
+                cube = OrbObst(x, y)
                 x += 5
                 y += 5
                 self.second_stage_of_generation(cube, x, y)
             elif data == "cube":
-                cube = CubeObst()
+                cube = CubeObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
             elif data == "spike":
-                cube = SpikeObst()
+                cube = SpikeObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
             elif data == "lowerOrb":
-                cube = LowerOrbObst()
+                cube = LowerOrbObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
-            print(data)
 
     def second_stage_of_generation(self, cube, x, y):
         all_Obstacle_sprites.add(cube)
