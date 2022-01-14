@@ -2,7 +2,7 @@ import pygame
 import time
 
 levels = []
-left = 'textures/name.jpg'
+left = 'textures/left120.png'
 right = 'textures/right120.png'
 
 pygame.init()
@@ -61,7 +61,7 @@ class Level(pygame.sprite.Sprite):
             # чек на нажатие кнопки
             time.sleep(0.4)
             print('ДО ФУНКЦИЙ', self.n)
-            if ans[0] > 800 and self.n <= 1:
+            if ans[0] > 800 and self.n <= len(levels) - 2:
                 print('Нажата кнопка: Вправо')
                 # time.sleep(0.2)
                 self.n += 1
