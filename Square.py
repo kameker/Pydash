@@ -47,16 +47,20 @@ class Player(pygame.sprite.Sprite):
             if self.rect.y <= self.y_now:
                 if self.jump < -1:
                     self.rect.y += 7
-                    print('1')
                 else:
                     self.rect.y -= 7
-                    print('2')
                 self.jump -= 1
             else:
-                print('stop)')
                 self.rect.y = self.y_now
                 self.jump_flag = False
                 self.jump = 30
+        else:
+            if self.rect.y < self.y_now:
+                self.rect.y += 7
+            elif self.rect.y > self.y_now:
+                self.rect.y = self.y_now
+            self.jump = 30
+
 
 
 player = Player(player_sprites)
