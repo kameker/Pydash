@@ -12,8 +12,8 @@ screen = pygame.display.set_mode(size)
 all_sprites = pygame.sprite.Group()
 pygame.display.set_caption('PyDash')
 clock = pygame.time.Clock()
-# music = pygame.mixer.Sound('textures/music_menu.mp3')
-# music.play(-1)
+music = pygame.mixer.Sound('textures/music_menu.mp3')
+music.play(-1)
 menu_img = pygame.image.load('textures/background.jpg')
 
 f = open('levels.txt', 'r')
@@ -22,17 +22,20 @@ levels = a.split('\n')
 print(levels)
 # global levels_num
 
+
 class Level_name:
     # изменение текста
-    def __init__(self, f):
-        self.f = f
+    def __init__(self, f=None):
+        global s
+        s = f
         self.text_map()
         print('Запуск')
+
 
     def text_map(self):
         screen.blit(menu_img, (0, 0))
         pygame.display.update()
-        button.print_text(levels[self.f], 380, 330)
+        button.print_text(levels[s], 380, 330)
         button.print_text('PyDash', 350, 60, font_size=62, font_color=(0, 0, 0))
         button.print_text('PyDash', 350, 60, font_size=60, font_color=(73, 210, 11))
 
@@ -60,12 +63,13 @@ class Level(pygame.sprite.Sprite):
             print('ДО ФУНКЦИЙ', self.n)
             if ans[0] > 800 and self.n <= 1:
                 print('Нажата кнопка: Вправо')
+                # time.sleep(0.2)
                 self.n += 1
-                Level_name(self.n)
+                Level_name(f=self.n)
                 print(self.n)
             else:
                 self.n = 0
-                Level_name(self.n)
+                Level_name(f=self.n)
 
 
 class Button:
@@ -80,7 +84,7 @@ class Button:
         text = font_type.render(text, True, font_color)
         screen.blit(text, (x, y))
 
-    def draw_pydash_menu(self, x, y, message, level=None):
+    def draw(self, x, y, message, level=None):
         location = pygame.mouse.get_pos()
 
         click = pygame.mouse.get_pressed()
@@ -89,8 +93,7 @@ class Button:
             pygame.draw.rect(screen, self.move_button, (x, y, self.w, self.h))
 
             if click[0] == 1:
-                # нажата кнопка играть, переход в игру.
-                print(levels[0])
+                print(levels[s])
 
         else:
             pygame.draw.rect(screen, self.not_move_button, (x, y, self.w, self.h))
@@ -118,7 +121,7 @@ while running:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             all_sprites.update(event)
-    button.draw_pydash_menu(430, 500, 'Играть')
+    button.draw(430, 500, 'Играть')
     all_sprites.draw(screen)
     clock.tick(10)
     pygame.display.flip()
