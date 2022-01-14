@@ -28,7 +28,7 @@ def load_image(name, colorkey=None):
 
 
 class Player(pygame.sprite.Sprite):
-    image = load_image('cube.png')
+    image = load_image('player.png')
 
     def __init__(self, *group):
         super().__init__(player_sprites)

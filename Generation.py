@@ -54,6 +54,7 @@ class Generator:
             elif data == "lowerOrb":
                 cube = LowerOrbObst()
                 self.second_stage_of_generation(cube, x, y)
+            print(data)
 
     def second_stage_of_generation(self, cube, x, y):
         all_Obstacle_sprites.add(cube)

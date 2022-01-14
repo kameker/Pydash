@@ -61,7 +61,7 @@ class OrbObst(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__(all_Obstacle_sprites)
-        self.image = SpikeObst.image
+        self.image = OrbObst.image
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
 
@@ -75,7 +75,7 @@ class LowerOrbObst(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__(all_Obstacle_sprites)
-        self.image = SpikeObst.image
+        self.image = LowerOrbObst.image
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
 
