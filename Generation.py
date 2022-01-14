@@ -3,6 +3,7 @@ import sys
 import pygame
 from Obstacle import SpikeObst, LowerOrbObst, OrbObst, CubeObst
 from Obstacle import all_Obstacle_sprites
+from Square import load_image
 
 
 class Generator:
@@ -59,18 +60,3 @@ class Generator:
         all_Obstacle_sprites.add(cube)
         cube.rect.x = x
         cube.rect.y = y
-
-    def load_image(self, name, colorkey=None):
-        fullname = os.path.join('textures', name)
-        if not os.path.isfile(fullname):
-            print(f"Файл с изображением '{fullname}' не найден")
-            sys.exit()
-        image = pygame.image.load(fullname)
-        if colorkey is not None:
-            image = image.convert()
-            if colorkey == -1:
-                colorkey = image.get_at((0, 0))
-            image.set_colorkey(colorkey)
-        else:
-            image = image.convert_alpha()
-        return image

@@ -62,5 +62,4 @@ class Player(pygame.sprite.Sprite):
             self.jump = 30
 
 
-
 player = Player(player_sprites)
