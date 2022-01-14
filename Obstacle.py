@@ -34,8 +34,7 @@ class CubeObst(pygame.sprite.Sprite):
     def update(self):
         if self.rect.y + 50 > player.rect.y + 50 > self.rect.y \
                 and self.rect.x + 50 > player.rect.x + 50 > self.rect.x:
-            player.rect.x = 0
-            player.rect.y = 650
+            player.death()
         elif self.rect.x + 50 > player.rect.x + 50 > self.rect.x \
                 and player.rect.y + 50 == self.rect.y:
             player.jump = False
@@ -52,8 +51,7 @@ class SpikeObst(pygame.sprite.Sprite):
 
     def update(self):
         if pygame.sprite.collide_mask(self, player):
-            player.rect.x = 0
-            player.rect.y = 650
+            player.death()
 
 
 class OrbObst(pygame.sprite.Sprite):
@@ -71,7 +69,7 @@ class OrbObst(pygame.sprite.Sprite):
 
 
 class LowerOrbObst(pygame.sprite.Sprite):
-    image = load_image('loverOrb.png')
+    image = load_image('lowerOrb.png')
 
     def __init__(self):
         super().__init__(all_Obstacle_sprites)

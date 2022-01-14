@@ -28,7 +28,7 @@ def load_image(name, colorkey=None):
 
 
 class Player(pygame.sprite.Sprite):
-    image = load_image('cube.png')
+    image = load_image('player.png')
 
     def __init__(self, *group):
         super().__init__(player_sprites)
@@ -52,6 +52,10 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.jump_flag = False
                 self.jump = 10
+
+    def death(self):
+        self.rect.x = 0
+        self.rect.y = 650
 
 
 class Camera:
