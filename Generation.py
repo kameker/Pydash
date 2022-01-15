@@ -1,5 +1,3 @@
-import os
-import sys
 import pygame
 from Obstacle import SpikeObst, LowerOrbObst, CubeObst, FinishObst
 from Obstacle import all_Obstacle_sprites
@@ -25,6 +23,7 @@ class Generator:
                                   self.cell_size, self.cell_size), 1)
 
     def open_file(self):
+        print("levels/" + self.level_name)
         with open("levels/" + self.level_name, encoding="utf8") as f:
             s = f.read()
         if s:
@@ -58,17 +57,3 @@ class Generator:
         cube.rect.x = x
         cube.rect.y = y
 
-    def load_image(self, name, colorkey=None):
-        fullname = os.path.join('textures', name)
-        if not os.path.isfile(fullname):
-            print(f"Файл с изображением '{fullname}' не найден")
-            sys.exit()
-        image = pygame.image.load(fullname)
-        if colorkey is not None:
-            image = image.convert()
-            if colorkey == -1:
-                colorkey = image.get_at((0, 0))
-            image.set_colorkey(colorkey)
-        else:
-            image = image.convert_alpha()
-        return image
