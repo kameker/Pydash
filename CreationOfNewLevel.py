@@ -49,6 +49,16 @@ class NewLevel:
         cube.rect.y = y
 
     def save_level(self, fname):
+        sp = []
+        with open('data/levels.txt', encoding="utf8") as f:
+            s = f.read()
+            for i in s:
+                sp.append(i)
+        with open('data/levels.txt', encoding="utf8", mode="w") as f:
+            for i in sp:
+                f.write(i)
+            f.write("\n")
+            f.write(fname+".txt")
         if self.list_of_obj:
             e = open("levels/" + fname + '.txt', encoding="utf8", mode="w")
             for i in self.list_of_obj:

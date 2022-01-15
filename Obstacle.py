@@ -2,7 +2,6 @@ import os
 import sys
 import pygame
 from Square import player
-all_sprite = pygame.sprite.Group()
 
 all_Obstacle_sprites = pygame.sprite.Group()
 
@@ -28,19 +27,6 @@ def load_image(name, colorkey=None):
     else:
         image = image.convert_alpha()
     return image
-
-
-class all_sprites(pygame.sprite.Sprite):
-    def __init__(self, x, y):
-        super().__init__(all_sprite)
-        self.image = all_sprite.image
-        self.rect = self.image.get_rect()
-        self.mask = pygame.mask.from_surface(self.image)
-        self.x = x
-        self.y = y
-
-    def update(self):
-        self.rect.x -= 5
 
 
 class CubeObst(pygame.sprite.Sprite):
@@ -83,25 +69,6 @@ class SpikeObst(pygame.sprite.Sprite):
             restart()
 
 
-class OrbObst(pygame.sprite.Sprite):
-    image = load_image('orb.png')
-
-    def __init__(self, x, y):
-        super().__init__(all_Obstacle_sprites)
-        self.image = OrbObst.image
-        self.rect = self.image.get_rect()
-        self.mask = pygame.mask.from_surface(self.image)
-        self.x = x
-        self.y = y
-
-    def update(self, *args):
-        self.rect.x -= 5
-        if pygame.sprite.collide_mask(self, player):
-            if args and args[0].type == pygame.MOUSEBUTTONDOWN:
-                player.jump_flag = True
-                player.jump = 30
-
-
 class LowerOrbObst(pygame.sprite.Sprite):
     image = load_image('loverOrb.png')
 
@@ -117,3 +84,20 @@ class LowerOrbObst(pygame.sprite.Sprite):
         self.rect.x -= 5
         if pygame.sprite.collide_mask(self, player):
             player.jump_flag = True
+
+
+class FinishObst(pygame.sprite.Sprite):
+    image = load_image('finish.png')
+
+    def __init__(self, x, y):
+        super().__init__(all_Obstacle_sprites)
+        self.image = FinishObst.image
+        self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.x = x
+        self.y = y
+
+    def update(self):
+        self.rect.x -= 5
+        if pygame.sprite.collide_mask(self, player):
+            restart()
