@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c76298f-fe20-475a-b965-a22617241f19" name="Changes" comment="clean">
+    <list default="true" id="6c76298f-fe20-475a-b965-a22617241f19" name="Changes" comment="clean 2">
+      <change afterPath="$PROJECT_DIR$/QTMainMenu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Obstacle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pydash.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/Pydash.pptx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +40,6 @@
     <setting file="file://$PROJECT_DIR$/Square.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Generation.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/Temp2_solution.zip/ars.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="23PmeR1geYjM3uXAmYW9KbQ48FQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -287,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642191559267</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="clean 2">
+      <created>1642195835099</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1642195835099</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -327,6 +335,7 @@
     <MESSAGE value="jump fixed" />
     <MESSAGE value="finish" />
     <MESSAGE value="clean" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean" />
+    <MESSAGE value="clean 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean 2" />
   </component>
 </project>
