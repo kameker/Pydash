@@ -1,6 +1,7 @@
 import pygame
 import time
 from main import MAIN
+
 levels = []
 left = 'textures/left120.png'
 right = 'textures/right120.png'
@@ -19,6 +20,7 @@ a = f.read()
 levels = a.split('\n')
 print(levels)
 global s
+
 
 # global levels_num
 
@@ -54,8 +56,6 @@ class Level(pygame.sprite.Sprite):
         if args and args[0].type == pygame.MOUSEBUTTONDOWN and \
                 self.rect.collidepoint(args[0].pos):
             ans = args[0].pos
-            # чек на нажатие кнопки
-            time.sleep(0.4)
             if ans[0] > 800 and self.n <= len(levels) - 2:
                 self.n += 1
                 Level_name(f=self.n)

@@ -1,11 +1,5 @@
-# импорт библиотек
 import pygame
-import sys
-import os
-from Generation import start_genration
-import Generation
-
-
+from LevelMenu import andrey
 play_button = 'textures/play_button.png'
 
 pygame.init()
@@ -16,10 +10,7 @@ pygame.display.set_caption('PyDash')
 
 clock = pygame.time.Clock()
 
-
 all_sprites = pygame.sprite.Group()
-
-menu_img = pygame.image.load('textures/background.jpg')
 
 
 class Play_Button(pygame.sprite.Sprite):
@@ -31,14 +22,13 @@ class Play_Button(pygame.sprite.Sprite):
         self.image = self.image.convert_alpha()
 
         self.rect = self.image.get_rect()
-        self.rect = self.rect.move(350, 250)
-
+        self.rect = self.rect.move(500, 250)
 
     def update(self, *args):
         if args and args[0].type == pygame.MOUSEBUTTONDOWN and \
                 self.rect.collidepoint(args[0].pos):
-            pygame.quit()
-            start_genration()
+
+            andrey()
 
 
 class Button:
@@ -48,7 +38,7 @@ class Button:
         self.move_button = (222, 31, 192)
         self.not_move_button = (140, 15, 118)
 
-    def print_text(self, text, x, y, font_color=(0, 0, 0), font_size=30, font_type='Geometry_Dash.ttf'):
+    def print_text(self, text, x, y, font_color=(0, 0, 0), font_size=30, font_type='textures/Geometry_Dash.ttf'):
         font_type = pygame.font.Font(font_type, font_size)
         text = font_type.render(text, True, font_color)
         screen.blit(text, (x, y))
@@ -67,47 +57,3 @@ class Button:
             pygame.draw.rect(screen, self.not_move_button, (x, y, self.w, self.h))
 
         self.print_text(message, x + 10, y + 10)
-
-
-
-running = True
-
-screen.blit(menu_img, (0, 0))
-pygame.display.update()
-button = Button(180, 70)
-button.print_text('PyDash', 350, 60, font_size=62, font_color=(0, 0, 0))
-button.print_text('PyDash', 350, 60, font_size=60, font_color=(73, 210, 11))
-# button.draw(400, 300, 'Играть')
-Play_Button(all_sprites, name=play_button)
-
-
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            all_sprites.update(event)
-    clock.tick(30)
-    all_sprites.draw(screen)
-    all_sprites.update(event)
-    pygame.display.flip()
-
-# открытие окна с заданиями
-def open_level(self):
-    pass
-    # открытие qt окна с уровнями
-
-def open_registration(self):
-    pass
-    # открытие окна qt с регистрацией и статистикой
-
-def open_creation_new_level(self):
-    pass
-    # открытие pygame окна с созданием уровней
-
-
-
-
-# запуск
-#if __name__ == '__main__':
-    #main = Main()

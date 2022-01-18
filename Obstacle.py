@@ -100,4 +100,4 @@ class FinishObst(pygame.sprite.Sprite):
     def update(self):
         self.rect.x -= 5
         if pygame.sprite.collide_mask(self, player):
-            restart()
+            print("PENIS")

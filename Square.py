@@ -46,9 +46,9 @@ class Player(pygame.sprite.Sprite):
         if self.jump_flag:
             if self.rect.y <= self.y_now:
                 if self.jump < -1:
-                    self.rect.y += 7
+                    self.rect.y += 5
                 else:
-                    self.rect.y -= 7
+                    self.rect.y -= 5
                 self.jump -= 1
 
             else:

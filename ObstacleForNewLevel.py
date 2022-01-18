@@ -16,10 +16,7 @@ class LowerOrbObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self, direction):
-        if direction > 0:
-            self.rect.x += 50
-        else:
-            self.rect.x -= 50
+        self.rect.x += direction
 
 
 
@@ -35,10 +32,7 @@ class NothingObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self, direction):
-        if direction > 0:
-            self.rect.x += 50
-        else:
-            self.rect.x -= 50
+        self.rect.x += direction
 
 
 class SpikeObst(pygame.sprite.Sprite):
@@ -53,10 +47,7 @@ class SpikeObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self, direction):
-        if direction > 0:
-            self.rect.x += 50
-        else:
-            self.rect.x -= 50
+        self.rect.x += direction
 
 
 class CubeObst(pygame.sprite.Sprite):
@@ -71,10 +62,7 @@ class CubeObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self, direction):
-        if direction > 0:
-            self.rect.x += 50
-        else:
-            self.rect.x -= 50
+        self.rect.x += direction
 
 
 class FinishObst(pygame.sprite.Sprite):
@@ -89,7 +77,4 @@ class FinishObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self, direction):
-        if direction > 0:
-            self.rect.x += 50
-        else:
-            self.rect.x -= 50
+        self.rect.x += direction

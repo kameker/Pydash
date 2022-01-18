@@ -10,7 +10,7 @@ def MAIN(name_level):
     background = pygame.image.load('textures/background.jpg')
     size = (1300, 700)
     level = pygame.display.set_mode(size)
-    board = Generator(30, 14, name_level)
+    board = Generator(30, 14, "jopa.txt")
     running = True
     board.open_file()
     board.generate_level()
