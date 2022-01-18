@@ -2,12 +2,15 @@ import os
 import sys
 import pygame
 from Square import player, load_image
-from QTMainMenu import Main
 
 all_Obstacle_sprites = pygame.sprite.Group()
+speed = 5
+deaths = 0
 
 
 def restart():
+    global deaths
+    deaths += 1
     pygame.time.delay(1000)
     for i in all_Obstacle_sprites:
         i.rect.x = i.x
@@ -27,7 +30,8 @@ class CubeObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self):
-        self.rect.x -= 5
+        global speed
+        self.rect.x -= speed
         if self.rect.y + 50 >= player.rect.y + 50 > self.rect.y \
                 and player.rect.x + 50 == self.rect.x:
             restart()
@@ -51,7 +55,8 @@ class SpikeObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self):
-        self.rect.x -= 5
+        global speed
+        self.rect.x -= speed
         if pygame.sprite.collide_mask(self, player):
             restart()
 
@@ -68,7 +73,8 @@ class OrbObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self):
-        self.rect.x -= 5
+        global speed
+        self.rect.x -= speed
         if pygame.sprite.collide_mask(self, player):
             player.jump_flag = True
             player.jump = 30
@@ -86,7 +92,8 @@ class LowerOrbObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self):
-        self.rect.x -= 5
+        global speed
+        self.rect.x -= speed
         if pygame.sprite.collide_mask(self, player):
             player.jump_flag = True
 
@@ -95,7 +102,7 @@ class FinishObst(pygame.sprite.Sprite):
     image = load_image('finish.png')
 
     def __init__(self, x, y):
-        super().__init__(all_sprite)
+        super().__init__(all_Obstacle_sprites)
         self.image = FinishObst.image
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
@@ -103,10 +110,7 @@ class FinishObst(pygame.sprite.Sprite):
         self.y = y
 
     def update(self):
-        self.rect.x -= 5
+        global speed
+        self.rect.x -= speed
         if pygame.sprite.collide_mask(self, player):
-            self.win = Main()
-            self.win.setObjectName("MainWindow")
-            self.win.setStyleSheet("#MainWindow{border-image:url(textures/background.jpg)}")
-            self.win.show()
-            pygame.quit()
+            speed = 0

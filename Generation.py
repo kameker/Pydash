@@ -1,7 +1,7 @@
 import os
 import sys
 import pygame
-from Obstacle import SpikeObst, LowerOrbObst, OrbObst, CubeObst
+from Obstacle import SpikeObst, LowerOrbObst, OrbObst, CubeObst, FinishObst
 from Obstacle import all_Obstacle_sprites
 from Square import load_image
 
@@ -54,6 +54,9 @@ class Generator:
                 self.second_stage_of_generation(cube, x, y)
             elif data == "lowerOrb":
                 cube = LowerOrbObst(x, y)
+                self.second_stage_of_generation(cube, x, y)
+            elif data == "finish":
+                cube = FinishObst(x, y)
                 self.second_stage_of_generation(cube, x, y)
 
     def second_stage_of_generation(self, cube, x, y):
