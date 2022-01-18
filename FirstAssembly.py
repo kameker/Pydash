@@ -6,12 +6,11 @@ from Square import clock
 from Generation import all_Obstacle_sprites
 
 
-def MAIN(name_level):
+def StartLevel(name_level, running):
     background = pygame.image.load('textures/background.jpg')
     size = (1300, 700)
     level = pygame.display.set_mode(size)
-    board = Generator(30, 14, "jopa.txt")
-    running = True
+    board = Generator(30, 14, name_level)
     board.open_file()
     board.generate_level()
     while running:
@@ -30,4 +29,3 @@ def MAIN(name_level):
         all_Obstacle_sprites.update()
         pygame.display.flip()
         clock.tick(100)
-MAIN("sonicwaw.txt")

@@ -48,6 +48,8 @@ class CubeObst(pygame.sprite.Sprite):
         if pygame.sprite.collide_mask(self, player):
             player.y_now = self.rect.y - 50
             player.rect.y = player.y_now
+            player.jump_flag = False
+            player.jump = 30
         else:
             player.y_now = 650
 

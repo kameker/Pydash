@@ -23,7 +23,6 @@ class Generator:
                                   self.cell_size, self.cell_size), 1)
 
     def open_file(self):
-        print("levels/" + self.level_name)
         with open("levels/" + self.level_name, encoding="utf8") as f:
             s = f.read()
         if s:

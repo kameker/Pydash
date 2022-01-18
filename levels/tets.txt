@@ -1,0 +1,9 @@
+cube 700 500
+cube 750 500
+cube 800 500
+cube 850 500
+cube 900 500
+cube 900 550
+spike 1150 450
+spike 950 450
+spike 1000 450

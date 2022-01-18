@@ -1,11 +1,8 @@
 import pygame
-import time
-from main import MAIN
+from FirstAssembly import MAIN
 
 levels = []
-left = 'textures/left120.png'
 right = 'textures/right120.png'
-
 pygame.init()
 size = 1000, 700
 screen = pygame.display.set_mode(size)
@@ -18,7 +15,7 @@ menu_img = pygame.image.load('textures/background.jpg')
 f = open('data/levels.txt', 'r')
 a = f.read()
 levels = a.split('\n')
-print(levels)
+
 global s
 
 
@@ -31,7 +28,7 @@ class Level_name:
         global s
         s = f
         self.text_map()
-        print('Запуск')
+
 
     def text_map(self):
         screen.blit(menu_img, (0, 0))
@@ -59,7 +56,7 @@ class Level(pygame.sprite.Sprite):
             if ans[0] > 800 and self.n <= len(levels) - 2:
                 self.n += 1
                 Level_name(f=self.n)
-                print(self.n)
+
             else:
                 self.n = 0
                 Level_name(f=self.n)
@@ -88,10 +85,9 @@ class Button:
 
             if click[0] == 1:
                 try:
-                    print(levels[s])
+                    MAIN(levels[s], True)
                 except:
-                    s = 0
-                    MAIN(levels[s])
+                    print("не вышло")
 
         else:
             pygame.draw.rect(screen, self.not_move_button, (x, y, self.w, self.h))
@@ -103,14 +99,15 @@ def andrey():
     running = True
     screen.blit(menu_img, (0, 0))
     temp = Level(all_sprites, name=right, x=800, y=300)
-    temp.update()
     levels_num = 0
     button = Button(160, 70)
-    pygame.display.update()
     button.print_text('PyDash', 350, 60, font_size=62, font_color=(0, 0, 0))
     button.print_text('PyDash', 350, 60, font_size=60, font_color=(73, 210, 11))
     button.print_text(levels[levels_num], 380, 330)
+    pygame.display.update()
+    temp.update()
     while running:
+        screen.blit(menu_img, (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
