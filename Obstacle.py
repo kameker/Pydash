@@ -1,13 +1,14 @@
+import os
+import sys
 import pygame
 from Square import player, load_image
-from QTStopGame import Main
 
 all_Obstacle_sprites = pygame.sprite.Group()
-speed = 5
-deaths = 1
+speed = 5  # скорость
+deaths = 0  # счётчик смертей
 
 
-def restart():
+def restart():  # функция рестарта
     global deaths
     deaths += 1
     pygame.time.delay(1000)
@@ -17,8 +18,7 @@ def restart():
         player.jump_flag = False
 
 
-# класс для кубов
-class CubeObst(pygame.sprite.Sprite):
+class CubeObst(pygame.sprite.Sprite):  # класс кубов
     image = load_image('cube.png')
 
     def __init__(self, x, y):
@@ -31,19 +31,19 @@ class CubeObst(pygame.sprite.Sprite):
 
     def update(self):
         global speed
-        self.rect.x -= speed
+        self.rect.x -= speed  # перемещение
         if self.rect.y + 50 >= player.rect.y + 50 > self.rect.y \
-                and player.rect.x + 50 == self.rect.x:
+                and player.rect.x + 50 == self.rect.x:  # условие при котором соприкосновение игрока и куба смертельно
             restart()
         if pygame.sprite.collide_mask(self, player):
-            player.y_now = self.rect.y - 50
-            player.rect.y = player.y_now
+            player.y_now = self.rect.y - 50  # смена координат возврата
+            player.rect.y = player.y_now - 1
             player.jump_flag = False
         else:
-            player.y_now = 650
+            player.y_now = 650  # если игрок не на кубе то он будет падать вниз пока не упрётся пол (или другой куб)
 
 
-class SpikeObst(pygame.sprite.Sprite):
+class SpikeObst(pygame.sprite.Sprite):  # класс шипов
     image = load_image('spike.png')
 
     def __init__(self, x, y):
@@ -57,11 +57,11 @@ class SpikeObst(pygame.sprite.Sprite):
     def update(self):
         global speed
         self.rect.x -= speed
-        if pygame.sprite.collide_mask(self, player):
+        if pygame.sprite.collide_mask(self, player):  # соприкосновение игрока и шипа смертельно
             restart()
 
 
-class OrbObst(pygame.sprite.Sprite):
+class OrbObst(pygame.sprite.Sprite):  # класс орбов
     image = load_image('orb.png')
 
     def __init__(self, x, y):
@@ -75,12 +75,12 @@ class OrbObst(pygame.sprite.Sprite):
     def update(self):
         global speed
         self.rect.x -= speed
-        if pygame.sprite.collide_mask(self, player):
+        if pygame.sprite.collide_mask(self, player):  # вызов прыжка при соприкосновении орба и игрока
             player.jump_flag = True
             player.jump = 30
 
 
-class LowerOrbObst(pygame.sprite.Sprite):
+class LowerOrbObst(pygame.sprite.Sprite):  # класс нижних орбов
     image = load_image('loverOrb.png')
 
     def __init__(self, x, y):
@@ -94,11 +94,11 @@ class LowerOrbObst(pygame.sprite.Sprite):
     def update(self):
         global speed
         self.rect.x -= speed
-        if pygame.sprite.collide_mask(self, player):
+        if pygame.sprite.collide_mask(self, player):  # вызов прыжка при соприкосновении нижнего орба и игрока
             player.jump_flag = True
 
 
-class FinishObst(pygame.sprite.Sprite):
+class FinishObst(pygame.sprite.Sprite):  # класс финиша
     image = load_image('finish.png')
 
     def __init__(self, x, y):
@@ -112,10 +112,5 @@ class FinishObst(pygame.sprite.Sprite):
     def update(self):
         global speed
         self.rect.x -= speed
-        if pygame.sprite.collide_mask(self, player):
+        if pygame.sprite.collide_mask(self, player):  # остановка игрока (но на самом деле карты) на финише
             speed = 0
-            self.win = Main(deaths)
-            self.win.setObjectName("MainWindow")
-            self.win.setStyleSheet("#MainWindow{border-image:url(textures/background.jpg)}")
-            self.win.show()
-            pygame.quit()
