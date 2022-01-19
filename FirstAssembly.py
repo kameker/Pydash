@@ -10,7 +10,7 @@ def StartLevel(name_level, running):
     background = pygame.image.load('textures/background.jpg')
     size = (1300, 700)
     level = pygame.display.set_mode(size)
-    board = Generator(30, 14, name_level)
+    board = Generator(name_level)
     board.open_file()
     board.generate_level()
     while running:

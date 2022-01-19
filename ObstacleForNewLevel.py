@@ -15,6 +15,7 @@ class LowerOrbObst(pygame.sprite.Sprite):
         self.x = x
         self.y = y
 
+    # сдвиг в лево или право
     def update(self, direction):
         self.rect.x += direction
 
@@ -30,6 +31,7 @@ class NothingObst(pygame.sprite.Sprite):
         self.x = x
         self.y = y
 
+    # сдвиг в лево или право
     def update(self, direction):
         self.rect.x += direction
 
@@ -45,6 +47,7 @@ class SpikeObst(pygame.sprite.Sprite):
         self.x = x
         self.y = y
 
+    # сдвиг в лево или право
     def update(self, direction):
         self.rect.x += direction
 
@@ -60,6 +63,7 @@ class CubeObst(pygame.sprite.Sprite):
         self.x = x
         self.y = y
 
+    # сдвиг в лево или право
     def update(self, direction):
         self.rect.x += direction
 
@@ -75,5 +79,6 @@ class FinishObst(pygame.sprite.Sprite):
         self.x = x
         self.y = y
 
+    # сдвиг в лево или право
     def update(self, direction):
         self.rect.x += direction

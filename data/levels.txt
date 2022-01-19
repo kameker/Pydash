@@ -1,4 +1,1 @@
-stereo.txt
-12.txt
-best.txt
-finish.txt
+pupa.txt

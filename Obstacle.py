@@ -1,6 +1,7 @@
 import pygame
 from Square import player, load_image
 from QTStopGame import Main
+
 all_Obstacle_sprites = pygame.sprite.Group()
 speed = 5
 deaths = 1
@@ -16,6 +17,7 @@ def restart():
         player.jump_flag = False
 
 
+# класс для кубов
 class CubeObst(pygame.sprite.Sprite):
     image = load_image('cube.png')
 

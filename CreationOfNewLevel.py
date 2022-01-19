@@ -16,7 +16,6 @@ class NewLevel:
         coords = ((coords[0]) // self.cell_size, (coords[1]) // self.cell_size)
         x = coords[0] * self.cell_size
         y = coords[1] * self.cell_size
-        # print((x, y), self.list_of_coords)
         if (x + self.removal, y) not in self.list_of_coords:
             if name_obj == "cube":
                 cube = CubeObst(x + self.removal, y)
@@ -35,7 +34,6 @@ class NewLevel:
                 self.second_stage_of_generation(cube, x, y)
             self.list_of_coords.append((x, y))
             self.list_of_obj.append(f"{name_obj} {x + self.removal} {y}")
-            print(len(self.list_of_obj))
 
     def second_stage_of_generation(self, cube, x, y):
         all_sprite.add(cube)
@@ -54,12 +52,13 @@ class NewLevel:
             f.write("\n")
             f.write(fname + ".txt")
         if self.list_of_obj:
-            e = open("levels/" + fname + '.txt', encoding="utf8", mode="w")
+            e = open("levelList/" + fname + '.txt', encoding="utf8", mode="w")
             for i in self.list_of_obj:
                 if i != "None":
                     e.write(str(i) + '\n')
             e.close()
 
+    # удаляет объект из списков уровня
     def del_obj(self, coords):
         id = 0
         coords = ((coords[0]) // self.cell_size, (coords[1]) // self.cell_size)
