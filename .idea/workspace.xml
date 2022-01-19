@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c76298f-fe20-475a-b965-a22617241f19" name="Changes" comment="finish">
+    <list default="true" id="6c76298f-fe20-475a-b965-a22617241f19" name="Changes" comment="презентация">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Obstacle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/levels/level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/levels/level.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pydash.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/Pydash.pptx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642531513665</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="deaths + finish">
+      <created>1642532773763</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1642532773763</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -343,6 +348,7 @@
     <MESSAGE value="clean" />
     <MESSAGE value="clean 2" />
     <MESSAGE value="finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish" />
+    <MESSAGE value="deaths + finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="deaths + finish" />
   </component>
 </project>
