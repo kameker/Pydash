@@ -1,5 +1,5 @@
 import pygame
-from Obstacle import load_image
+from Square import load_image
 
 all_sprite = pygame.sprite.Group()
 
@@ -17,7 +17,6 @@ class LowerOrbObst(pygame.sprite.Sprite):
 
     def update(self, direction):
         self.rect.x += direction
-
 
 
 class NothingObst(pygame.sprite.Sprite):

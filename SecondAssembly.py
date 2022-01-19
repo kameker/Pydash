@@ -53,3 +53,4 @@ def StartCreation():
         all_sprite.draw(work_zone)
         pygame.display.flip()
         clock.tick(100)
+    pygame.quit()

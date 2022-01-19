@@ -21,6 +21,7 @@ def StartLevel(name_level, running):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
+                    pygame.quit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 player.jump_flag = True
         player_sprites.draw(level)
@@ -29,3 +30,4 @@ def StartLevel(name_level, running):
         all_Obstacle_sprites.update()
         pygame.display.flip()
         clock.tick(100)
+    pygame.quit()

@@ -1,4 +1,0 @@
-cube 400 650
-spike 400 600
-spike 450 650
-spike 350 650

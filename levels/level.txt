@@ -1,5 +1,0 @@
-lowerOrb 800 650
-cube 1000 550
-cube 1050 550
-cube 1100 550
-lowerOrb 1100 500

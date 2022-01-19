@@ -2,13 +2,10 @@ import os
 import sys
 import pygame
 
-
-pygame.init()
 size = width, height = 1300, 700
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 player_sprites = pygame.sprite.Group()
-jump = False
 
 
 def load_image(name, colorkey=None):
@@ -50,12 +47,10 @@ class Player(pygame.sprite.Sprite):
                 else:
                     self.rect.y -= 5
                 self.jump -= 1
+        else:
+            self.rect.y = 650
+            self.jump = 30
 
-            else:
-                self.rect.y = self.y_now
-                self.jump_flag = False
-                self.jump = 30
-                print("done")
 
 
 player = Player(player_sprites)

@@ -27,6 +27,7 @@ class Main(QMainWindow, Ui_Form):
         self.win.setObjectName("MainWindow")
         self.win.setStyleSheet("#MainWindow{border-image:url(textures/background.jpg)}")
         self.win.show()
+        ex.hide()
 
     def NewLevel(self):
         StartCreation()

@@ -16,24 +16,22 @@ class NewLevel:
         coords = ((coords[0]) // self.cell_size, (coords[1]) // self.cell_size)
         x = coords[0] * self.cell_size
         y = coords[1] * self.cell_size
-        if name_obj == "orb":
-            x += 5
-            y += 5
-        if (x, y) not in self.list_of_coords:
+        # print((x, y), self.list_of_coords)
+        if (x + self.removal, y) not in self.list_of_coords:
             if name_obj == "cube":
-                cube = CubeObst(x, y)
+                cube = CubeObst(x + self.removal, y)
                 self.second_stage_of_generation(cube, x, y)
             elif name_obj == "spike":
-                cube = SpikeObst(x, y)
+                cube = SpikeObst(x + self.removal, y)
                 self.second_stage_of_generation(cube, x, y)
             elif name_obj == "loverOrb":
-                cube = LowerOrbObst(x, y)
+                cube = LowerOrbObst(x + self.removal, y)
                 self.second_stage_of_generation(cube, x, y)
             elif name_obj == "nothing":
-                cube = NothingObst(x, y)
+                cube = NothingObst(x + self.removal, y)
                 self.second_stage_of_generation(cube, x, y)
             elif name_obj == "finish":
-                cube = FinishObst(x, y)
+                cube = FinishObst(x + self.removal, y)
                 self.second_stage_of_generation(cube, x, y)
             self.list_of_coords.append((x, y))
             self.list_of_obj.append(f"{name_obj} {x + self.removal} {y}")
@@ -54,7 +52,7 @@ class NewLevel:
             for i in sp:
                 f.write(i)
             f.write("\n")
-            f.write(fname+".txt")
+            f.write(fname + ".txt")
         if self.list_of_obj:
             e = open("levels/" + fname + '.txt', encoding="utf8", mode="w")
             for i in self.list_of_obj:
@@ -73,7 +71,5 @@ class NewLevel:
                 self.list_of_obj[id] = "None"
                 break
             id += 1
-        obst = self.list_of_obj[id].split()[0]
         cube = NothingObst(x, y)
         self.second_stage_of_generation(cube, x, y)
-

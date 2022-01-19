@@ -29,7 +29,6 @@ class QTLevelM(QMainWindow, Ui_Form):
         self.NameLevelLabel.setText(self.levels[self.levelID][:-4])
         self.pushButton_3.clicked.connect(self.startLevel)
 
-
     def leftClick(self):
         if self.levelID - 1 >= 0:
             self.levelID -= 1
@@ -42,6 +41,8 @@ class QTLevelM(QMainWindow, Ui_Form):
 
     def startLevel(self):
         StartLevel(self.levels[self.levelID], True)
+        ex.hide()
+
 
 # чтобы видеть ошибки
 def except_hook(cls, exception, traceback):
