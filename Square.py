@@ -29,6 +29,7 @@ class Player(pygame.sprite.Sprite):
 
     def __init__(self, *group):
         super().__init__(player_sprites)
+
         self.image = Player.image
         self.rect = self.image.get_rect()
         self.rect.x = 300
@@ -47,10 +48,9 @@ class Player(pygame.sprite.Sprite):
                 else:
                     self.rect.y -= 5
                 self.jump -= 1
-        else:
-            self.rect.y = 650
-            self.jump = 30
-
+            else:
+                self.rect.y = self.y_now
+                self.jump = 30
 
 
 player = Player(player_sprites)
