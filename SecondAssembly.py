@@ -11,13 +11,11 @@ def StartCreation():
     size = (1300, 700)
     work_zone = pygame.display.set_mode(size)
     level_zone = NewLevel(work_zone, size[0], size[1])
-    board = Generator("")
     running = True
     flag_obj = False
 
     while running:
         work_zone.blit(background, (0, 0))
-        board.render(work_zone)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
