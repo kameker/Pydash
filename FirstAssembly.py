@@ -1,10 +1,9 @@
 import pygame
-from Generation import Generator
+from Generation import Generator, finish_sprites
 from Square import player
 from Square import player_sprites
 from Square import clock
-from Generation import all_Obstacle_sprites
-from Obstacle import stop_flag
+from Generation import all_Obstacle_sprites, finish_sprites
 
 
 def startlvl(name_level):
@@ -23,9 +22,10 @@ def startlvl(name_level):
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 player.jump_flag = True
-        if stop_flag:
-            print('anything')
-            running = False
+        for i in finish_sprites:
+            if i.stop_flag:
+                print('anything')
+                running = False
         player_sprites.draw(level)
         player_sprites.update()
         all_Obstacle_sprites.draw(level)

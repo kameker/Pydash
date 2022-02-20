@@ -1,5 +1,5 @@
 from Obstacle import SpikeObst, LowerOrbObst, CubeObst, FinishObst
-from Obstacle import all_Obstacle_sprites
+from Obstacle import all_Obstacle_sprites, finish_sprites
 
 
 class Generator:
@@ -38,6 +38,7 @@ class Generator:
                 self.second_stage_of_generation(cube, x, y)
             elif data == "finish":
                 cube = FinishObst(x, y)
+                finish_sprites.add(cube)
                 self.second_stage_of_generation(cube, x, y)
 
     def second_stage_of_generation(self, cube, x, y):
