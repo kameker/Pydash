@@ -3,7 +3,6 @@ import sys
 import pygame
 
 
-pygame.init()
 size = width, height = 1300, 700
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
@@ -12,12 +11,12 @@ jump = False
 
 
 def load_image(name, colorkey=None):  # функция загрузки изображения
-    fullname = os.path.join('textures', name)
-    if not os.path.isfile(fullname):
+    fullname = os.path.join('textures', name)  # поиск изображения по имени в папке textures
+    if not os.path.isfile(fullname): # если файл не существует, то выходим
         print(f"Файл с изображением '{fullname}' не найден")
         sys.exit()
     image = pygame.image.load(fullname)
-    if colorkey is not None:
+    if colorkey is not None:  # прозрачное/непрозрачное
         image = image.convert()
         if colorkey == -1:
             colorkey = image.get_at((0, 0))
@@ -53,7 +52,7 @@ class Player(pygame.sprite.Sprite):  # класс игрока
                 self.rect.y = self.y_now
                 self.jump_flag = False
                 self.jump = 30
-        else:
+        else:  # эта часть нужна для работы запрыгивания на куб
             if self.rect.y < self.y_now:
                 self.rect.y += 5
             elif self.rect.y > self.y_now:

@@ -1,3 +1,4 @@
+# импорт библиотек
 import sys
 
 from PyQt5.QtCore import QSize
@@ -9,7 +10,7 @@ from SecondAssembly import StartCreation
 
 
 # Создание главного стартового окна
-class Main(QMainWindow, Ui_Form):
+class MainWindow(QMainWindow, Ui_Form):
     # инициальзация
     def __init__(self):
         super().__init__()
@@ -26,9 +27,12 @@ class Main(QMainWindow, Ui_Form):
         self.win.setObjectName("MainWindow")
         self.win.setStyleSheet("#MainWindow{border-image:url(textures/background.jpg)}")
         self.win.show()
+        ex.hide()
 
     def NewLevel(self):
+        self.showMinimized()
         StartCreation()
+
 
 # чтобы видеть ошибки
 def except_hook(cls, exception, traceback):
@@ -38,7 +42,7 @@ def except_hook(cls, exception, traceback):
 # запуск
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Main()
+    ex = MainWindow()
     ex.setObjectName("MainWindow")
     ex.setStyleSheet("#MainWindow{border-image:url(textures/background.jpg)}")
     ex.show()

@@ -1,0 +1,5 @@
+finish 1150 450
+finish 1150 200
+finish 1150 50
+cube 700 650
+cube 700 600
