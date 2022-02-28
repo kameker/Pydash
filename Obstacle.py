@@ -1,17 +1,13 @@
-import os
-import sys
 import pygame
 from Square import player, load_image
 
 all_Obstacle_sprites = pygame.sprite.Group()
+finish_sprites = pygame.sprite.Group()
 speed = 5  # скорость
-deaths = 0  # счётчик смертей
 
 
 def restart():  # функция рестарта
-    global deaths
-    deaths += 1
-    pygame.time.delay(1000)
+    player.deaths += 1
     for i in all_Obstacle_sprites:
         i.rect.x = i.x
         i.rect.y = i.y
@@ -40,7 +36,7 @@ class CubeObst(pygame.sprite.Sprite):  # класс кубов
             player.rect.y = player.y_now - 1
             player.jump_flag = False
         else:
-            player.y_now = 650  # если игрок не на кубе то он будет падать вниз пока не упрётся пол (или другой куб)
+            player.y_now = 1030  # если игрок не на кубе то он будет стремится к этой координате
 
 
 class SpikeObst(pygame.sprite.Sprite):  # класс шипов
@@ -106,11 +102,12 @@ class FinishObst(pygame.sprite.Sprite):  # класс финиша
         self.image = FinishObst.image
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
+        self.stop_flag = False
         self.x = x
         self.y = y
 
     def update(self):
         global speed
         self.rect.x -= speed
-        if pygame.sprite.collide_mask(self, player):  # остановка игрока (но на самом деле карты) на финише
-            speed = 0
+        if pygame.sprite.collide_mask(self, player): # остановка игрока (но на самом деле карты) на финише
+            self.stop_flag = True

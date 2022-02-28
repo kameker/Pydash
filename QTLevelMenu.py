@@ -3,9 +3,11 @@ import sys
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QMainWindow
 from ui.UILevelMenu import Ui_Form
 from FirstAssembly import StartLevel
+from QTStopGame import StopMenu
+from Square import player
 
 
 # Создание главного стартового окна
@@ -28,33 +30,36 @@ class QTLevelM(QMainWindow, Ui_Form):
         self.levels = a.split('\n')
         self.NameLevelLabel.setText(self.levels[self.levelID][:-4])
         self.pushButton_3.clicked.connect(self.startLevel)
+        self.win = StopMenu(player.deaths)
 
     def leftClick(self):
+        f = open('data/levels.txt', 'r')
+        a = f.read()
+        self.levels = a.split('\n')
         if self.levelID - 1 >= 0:
             self.levelID -= 1
             self.NameLevelLabel.setText(self.levels[self.levelID][:-4])
 
     def rightClick(self):
+        f = open('data/levels.txt', 'r')
+        a = f.read()
+        self.levels = a.split('\n')
         if self.levelID + 1 <= len(self.levels) - 1:
             self.levelID += 1
             self.NameLevelLabel.setText(self.levels[self.levelID][:-4])
 
     def startLevel(self):
+        self.showMinimized()
         StartLevel(self.levels[self.levelID], True)
-        ex.hide()
+        self.hide()
+        self.win = StopMenu(player.deaths)
+        self.win.show()
+        player.deaths = 1
+
+
+
 
 
 # чтобы видеть ошибки
 def except_hook(cls, exception, traceback):
     sys.__excepthook__(cls, exception, traceback)
-
-
-# запуск
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = QTLevelM()
-    ex.setObjectName("MainWindow")
-    ex.setStyleSheet("#MainWindow{border-image:url(textures/background.jpg)}")
-    ex.show()
-    sys.excepthook = except_hook
-    sys.exit(app.exec_())

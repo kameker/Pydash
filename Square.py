@@ -4,8 +4,7 @@ import pygame
 
 
 pygame.init()
-size = width, height = 1300, 700
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode((1920, 1050))
 clock = pygame.time.Clock()
 player_sprites = pygame.sprite.Group()
 jump = False
@@ -35,11 +34,12 @@ class Player(pygame.sprite.Sprite):  # класс игрока
         self.image = Player.image
         self.rect = self.image.get_rect()
         self.rect.x = 300
-        self.rect.y = height - 50
+        self.rect.y = 1050
         self.jump = 30
         self.jump_flag = False  # флаг прыжка
         self.mask = pygame.mask.from_surface(self.image)
-        self.y_now = 650  # переменная координат для возврата
+        self.y_now = 1050  # переменная координат для возврата
+        self.deaths = 1
 
     def update(self):  # метож прыжка
         if self.jump_flag:

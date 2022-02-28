@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/ui2.ui'
+# Form implementation generated from reading ui file 'ui\ui.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -14,13 +14,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(1570, 769)
+        Form.resize(1920, 1080)
         self.pushButton = QtWidgets.QPushButton(Form)
-        self.pushButton.setGeometry(QtCore.QRect(510, 290, 181, 161))
+        self.pushButton.setGeometry(QtCore.QRect(700, 400, 181, 161))
         self.pushButton.setText("")
         self.pushButton.setObjectName("pushButton")
         self.NewLevelButton = QtWidgets.QPushButton(Form)
-        self.NewLevelButton.setGeometry(QtCore.QRect(790, 290, 181, 161))
+        self.NewLevelButton.setGeometry(QtCore.QRect(1150, 400, 181, 161))
         self.NewLevelButton.setText("")
         self.NewLevelButton.setObjectName("NewLevelButton")
 

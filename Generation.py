@@ -1,5 +1,5 @@
 from Obstacle import SpikeObst, LowerOrbObst, CubeObst, FinishObst
-from Obstacle import all_Obstacle_sprites
+from Obstacle import all_Obstacle_sprites, finish_sprites
 
 
 class Generator:
@@ -22,10 +22,10 @@ class Generator:
     def generate_level(self):
         for i in self.list_of_object:
             data = i.split()  # координаты по умолчанию
-            coords = (int(data[1]) // self.cell_size,
-                      (int(data[2]) // self.cell_size))  # изменение координат чтобы они были кратны self.cell_size
-            x = coords[0] * self.cell_size
-            y = coords[1] * self.cell_size
+            coords = (int(data[1]),
+                      int(data[2]))  # изменение координат чтобы они были кратны self.cell_size
+            x = coords[0]
+            y = coords[1]
             data = data[0]  # data ахранит название припятствия
             if data == "cube":
                 cube = CubeObst(x, y)
@@ -38,6 +38,7 @@ class Generator:
                 self.second_stage_of_generation(cube, x, y)
             elif data == "finish":
                 cube = FinishObst(x, y)
+                finish_sprites.add(cube)
                 self.second_stage_of_generation(cube, x, y)
 
     def second_stage_of_generation(self, cube, x, y):

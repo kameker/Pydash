@@ -4,13 +4,14 @@ import sys
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from QTSaveMenu import QTSaveM
 from ui.UIMainMenu import Ui_Form
 from QTLevelMenu import QTLevelM
 from SecondAssembly import StartCreation
 
 
 # Создание главного стартового окна
-class Main(QMainWindow, Ui_Form):
+class MainWindow(QMainWindow, Ui_Form):
     # инициальзация
     def __init__(self):
         super().__init__()
@@ -21,16 +22,21 @@ class Main(QMainWindow, Ui_Form):
         self.NewLevelButton.setIconSize(QSize(150, 200))
         self.pushButton.clicked.connect(self.levelMenu)
         self.NewLevelButton.clicked.connect(self.NewLevel)
+        self.window = QTSaveM()
 
     def levelMenu(self):
-        self.win = QTLevelM()
-        self.win.setObjectName("MainWindow")
-        self.win.setStyleSheet("#MainWindow{border-image:url(textures/background.jpg)}")
-        self.win.show()
+        self.win2 = QTLevelM()
+        self.win2.setObjectName("MainWindow")
+        self.win2.setStyleSheet("#MainWindow{border-image:url(textures/background.jpg)}")
+        self.win2.show()
         ex.hide()
 
     def NewLevel(self):
+        self.showMinimized()
         StartCreation()
+        self.levelMenu()
+        self.window.show()
+
 
 # чтобы видеть ошибки
 def except_hook(cls, exception, traceback):
@@ -40,7 +46,7 @@ def except_hook(cls, exception, traceback):
 # запуск
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Main()
+    ex = MainWindow()
     ex.setObjectName("MainWindow")
     ex.setStyleSheet("#MainWindow{border-image:url(textures/background.jpg)}")
     ex.show()
